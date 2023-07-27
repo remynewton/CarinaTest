@@ -14,7 +14,6 @@ public class ESPNTest implements IAbstractTest {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         SoftAssert softAssert = new SoftAssert();
-
     }
 
     @Test(dataProvider = "login", dataProviderClass = DP.class)

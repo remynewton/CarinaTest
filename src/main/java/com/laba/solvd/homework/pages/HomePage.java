@@ -5,12 +5,13 @@ import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.time.Duration;
+import com.laba.solvd.homework.pages.Frame;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HomePageBase.class)
 public class HomePage extends HomePageBase {
@@ -18,7 +19,9 @@ public class HomePage extends HomePageBase {
     private ExtendedWebElement userTrigger;
     @FindBy(how=How.CSS, using="a[data-regformid=\"espn\"]")
     private ExtendedWebElement loginLink;
-    @FindBy(how=How.CSS, using="input[type='email']")
+    @FindBy(xpath="//iframe[@id='oneid-iframe']")
+    private WebElement iframe;
+    @FindBy(how=How.CSS, using="input#InputIdentityFlowValue.input-InputIdentityFlowValue")
     private ExtendedWebElement emailInput;
 
     @FindBy(how=How.CSS, using="button[type='submit']")
@@ -43,9 +46,10 @@ public class HomePage extends HomePageBase {
     public boolean login(String email, String password) {
         userTrigger.click();
         loginLink.click();
-        assertElementPresent(emailInput);
+        driver.switchTo().frame(iframe);
+        getDriver().switchTo().defaultContent();
         emailInput.type(email,10,ExpectedConditions
-                .presenceOfElementLocated(By.cssSelector("input[type='email']")));
+                .presenceOfElementLocated(emailInput.getBy()));
         continueButton.click();
         assertElementPresent(passwordInput);
         passwordInput.type(password);
