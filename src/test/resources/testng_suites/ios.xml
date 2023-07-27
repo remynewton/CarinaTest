@@ -19,7 +19,7 @@
 
 	<test name="Mobile test">
 		<classes>
-			<class name="com.zebrunner.carina.demo.MobileSampleTest" />
+			<class name="com.laba.solvd.MobileSampleTest" />
 		</classes>
 	</test>
 

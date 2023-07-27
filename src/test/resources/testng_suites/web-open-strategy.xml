@@ -16,7 +16,7 @@
 
     <test name="Gsm arena page open strategy test">
         <classes>
-            <class name="com.zebrunner.carina.demo.PageOpeningStrategySampleTest"/>
+            <class name="com.laba.solvd.PageOpeningStrategySampleTest"/>
         </classes>
     </test>
 

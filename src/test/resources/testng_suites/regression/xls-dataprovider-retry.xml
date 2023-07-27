@@ -18,7 +18,7 @@
 
 	<test name="XLS DataProvider with Retry">
 		<classes>
-			<class name="com.zebrunner.carina.demo.regression.dataprovider.XlsDataproviderRetryTest" />
+			<class name="com.laba.solvd.regression.dataprovider.XlsDataproviderRetryTest" />
 		</classes>
 	</test>
 

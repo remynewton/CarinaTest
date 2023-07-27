@@ -11,7 +11,7 @@
 
     <test name="ZSG Artifact Test">
         <classes>
-            <class name="com.zebrunner.carina.demo.regression.esg.ArtifactTest"/>
+            <class name="com.laba.solvd.regression.esg.ArtifactTest"/>
         </classes>
     </test>
 </suite>

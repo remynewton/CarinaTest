@@ -11,7 +11,7 @@
 
     <test name="ZSG Clipboard Test">
         <classes>
-            <class name="com.zebrunner.carina.demo.regression.esg.ClipboardTest"/>
+            <class name="com.laba.solvd.regression.esg.ClipboardTest"/>
         </classes>
     </test>
 </suite>

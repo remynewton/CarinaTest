@@ -1,0 +1,75 @@
+{
+  "type": "object",
+  "properties": {
+    "coord": {
+      "type": "object",
+      "properties": {
+        <#if longitude?exists && latitude?exists>
+        "lon": "${longitude?c}",
+        "lat": "${latitude?c}",
+        </#if>
+      },
+      "required": ["lon", "lat"]
+    },
+    "weather": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "number" },
+          "main": { "type": "string" },
+          "description": { "type": "string" },
+          "icon": { "type": "string" }
+        }
+      }
+    },
+    "base": { "type": "string" },
+    "main": {
+      "type": "object",
+      "properties": {
+        "temp": { "type": "number" },
+        "feels_like": { "type": "number" },
+        "temp_min": { "type": "number" },
+        "temp_max": { "type": "number" },
+        "pressure": { "type": "number" },
+        "humidity": { "type": "number" }
+      }
+    },
+    "visibility": { "type": "number" },
+    "wind": {
+      "type": "object",
+      "properties": {
+        "speed": { "type": "number" },
+        "deg": { "type": "number" }
+      }
+    },
+    "clouds": {
+      "type": "object",
+      "properties": {
+        "all": { "type": "number" }
+      }
+    },
+    "dt": { "type": "number" },
+    "sys": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "number" },
+        "id": { "type": "number" },
+        "country": { "type": "string" },
+        "sunrise": { "type": "number" },
+        "sunset": { "type": "number" }
+      },
+      "required": ["country", "sunrise", "sunset"]
+    },
+    "timezone": { "type": "number" },
+    "id": { "type": "number" },
+    <#if city?exists>
+    "name": "${city}",
+    </#if>
+    "cod": { "type": "number" }
+  },
+  "required": [
+    "coord", "weather", "base", "main", "visibility", "wind", "clouds",
+    "dt", "sys", "timezone", "id", "name", "cod"
+  ]
+}

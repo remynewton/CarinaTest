@@ -12,7 +12,7 @@
 
     <test name="Multiple Browser Test">
         <classes>
-            <class name="com.zebrunner.carina.demo.WebMultipleBrowserTest"/>
+            <class name="com.laba.solvd.WebMultipleBrowserTest"/>
         </classes>
     </test>
 

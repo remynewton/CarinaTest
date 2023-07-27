@@ -11,7 +11,7 @@
 
     <test name="ZSG Proxy Test">
         <classes>
-            <class name="com.zebrunner.carina.demo.regression.esg.ProxyTest"/>
+            <class name="com.laba.solvd.regression.esg.ProxyTest"/>
         </classes>
     </test>
 </suite>

@@ -16,7 +16,7 @@
 
 	<test name="GSM arena web tests using single driver between tests">
 		<classes>
-			<class name="com.zebrunner.carina.demo.WebSampleSingleDriver" />
+			<class name="com.laba.solvd.WebSampleSingleDriver" />
 		</classes>
 	</test>
 	

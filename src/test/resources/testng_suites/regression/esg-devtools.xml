@@ -11,7 +11,7 @@
 
     <test name="ZSG Chrome DevTools Test">
         <classes>
-            <class name="com.zebrunner.carina.demo.regression.esg.DevToolsTest"/>
+            <class name="com.laba.solvd.regression.esg.DevToolsTest"/>
         </classes>
     </test>
 </suite>

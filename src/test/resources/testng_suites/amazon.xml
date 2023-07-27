@@ -9,7 +9,7 @@
 
     <test name="Amazon test">
         <classes>
-            <class name="com.zebrunner.carina.demo.AmazonS3Test" />
+            <class name="com.laba.solvd.AmazonS3Test" />
         </classes>
     </test>
 

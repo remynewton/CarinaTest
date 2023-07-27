@@ -14,7 +14,7 @@
 
 	<test name="DataProvider Test 1">
 		<classes>
-			<class name="com.zebrunner.carina.demo.regression.dataprovider.DataproviderRetryTest1">
+			<class name="com.laba.solvd.regression.dataprovider.DataproviderRetryTest1">
 				<methods>
 					<include name="testDataproviderRetry1"/>
 				</methods>
@@ -24,7 +24,7 @@
 	
 	<test name="DataProvider Test 2">
 		<classes>
-			<class name="com.zebrunner.carina.demo.regression.dataprovider.DataproviderRetryTest2">
+			<class name="com.laba.solvd.regression.dataprovider.DataproviderRetryTest2">
 				<methods>
 					<include name="testDataproviderRetry2"/>
 				</methods>
