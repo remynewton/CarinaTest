@@ -3,11 +3,10 @@ package com.laba.solvd.homework.pages;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class TeamsPageBase extends AbstractPage {
-
-    public TeamsPageBase(WebDriver driver) {
+public abstract class WatchPageBase extends AbstractPage {
+    public WatchPageBase(WebDriver driver) {
         super(driver);
     }
 
-    public abstract boolean getNames(String teamName);
+    public abstract boolean watchVideo();
 }

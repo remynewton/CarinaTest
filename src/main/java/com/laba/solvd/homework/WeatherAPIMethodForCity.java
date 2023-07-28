@@ -13,8 +13,8 @@ import com.zebrunner.carina.utils.config.Configuration;
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class WeatherAPIMethodForCity extends AbstractApiMethodV2 {
     public WeatherAPIMethodForCity(String city) {
-        replaceUrlPlaceholder("base_url", String.valueOf(Configuration.get("weather_api_url")));
-        replaceUrlPlaceholder("api_token", String.valueOf(Configuration.get("api_token")));
+        replaceUrlPlaceholder("base_url", String.valueOf(Configuration.get("weather_api_url").get()));
+        replaceUrlPlaceholder("api_token", String.valueOf(Configuration.get("api_token").get()));
         replaceUrlPlaceholder("city", city);
     }
 }

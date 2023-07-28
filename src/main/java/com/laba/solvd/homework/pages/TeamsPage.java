@@ -1,22 +1,31 @@
 package com.laba.solvd.homework.pages;
 
-import com.laba.solvd.homework.pages.components.TeamItem;
+import com.zebrunner.carina.utils.IWebElement;
+import com.zebrunner.carina.utils.factory.DeviceType;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = TeamsPageBase.class)
 public class TeamsPage extends TeamsPageBase {
-    @FindBy(how=How.XPATH, using="//div[@class='ContentList mt4 ContentList--NoBorder']//div[@class='ContentList__Item']")
-    private List<TeamItem> teams;
+    @FindBy(how = How.CSS, using = ".di.clr-gray-01.h5")
+    private List<ExtendedWebElement> names;
 
-    protected TeamsPage(WebDriver driver) {
+    public TeamsPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public List<TeamItem> getTeams() {
-        return teams;
+    public boolean getNames(String teamName) {
+        for (IWebElement name : names) {
+            if (name.getText().equalsIgnoreCase(teamName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

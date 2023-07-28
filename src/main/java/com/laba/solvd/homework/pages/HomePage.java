@@ -2,16 +2,10 @@ package com.laba.solvd.homework.pages;
 
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import com.zebrunner.carina.utils.factory.DeviceType;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import com.laba.solvd.homework.pages.Frame;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HomePageBase.class)
 public class HomePage extends HomePageBase {
@@ -19,23 +13,24 @@ public class HomePage extends HomePageBase {
     private ExtendedWebElement userTrigger;
     @FindBy(how=How.CSS, using="a[data-regformid=\"espn\"]")
     private ExtendedWebElement loginLink;
-    @FindBy(xpath="//iframe[@id='oneid-iframe']")
-    private WebElement iframe;
-    @FindBy(how=How.CSS, using="input#InputIdentityFlowValue.input-InputIdentityFlowValue")
+    @FindBy(xpath = "//input[@data-testid=\"InputIdentityFlowValue\"]")
     private ExtendedWebElement emailInput;
-
     @FindBy(how=How.CSS, using="button[type='submit']")
     private ExtendedWebElement continueButton;
-
-    @FindBy(how=How.XPATH, using="//input[@type='email']")
+    @FindBy(how=How.XPATH, using="//input[@data-testid=\"InputPassword\"]")
     private ExtendedWebElement passwordInput;
     @FindBy(how=How.CSS, using="button[type='submit']")
     private ExtendedWebElement loginButton;
     @FindBy(how = How.XPATH, using = "//a[contains(text(),'Log Out')]")
     private ExtendedWebElement logoutLink;
-
     @FindBy(css = ".site-logo")
     public ExtendedWebElement pageLogo;
+    @FindBy(how=How.CSS, using="li.sports.menu-nfl")
+    private ExtendedWebElement nflMenu;
+    @FindBy(how=How.XPATH, using="//a[@href='/nfl/teams']")
+    private ExtendedWebElement teamsLink;
+    @FindBy(how=How.XPATH, using="//a[@name='&lpos=sitenavdefault+sitenav_watch']")
+    private ExtendedWebElement watchLink;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -44,16 +39,27 @@ public class HomePage extends HomePageBase {
 
     @Override
     public boolean login(String email, String password) {
-        userTrigger.click();
+        userTrigger.hover();
         loginLink.click();
-        driver.switchTo().frame(iframe);
-        getDriver().switchTo().defaultContent();
-        emailInput.type(email,10,ExpectedConditions
-                .presenceOfElementLocated(emailInput.getBy()));
+        LoginPage login = new LoginPage(driver);
+        login.click();
+        emailInput.type(email);
         continueButton.click();
-        assertElementPresent(passwordInput);
         passwordInput.type(password);
         loginButton.click();
         return logoutLink.isElementPresent();
+    }
+
+    @Override
+    public TeamsPageBase selectTeam() {
+        nflMenu.hover();
+        teamsLink.click();
+        return initPage(driver, TeamsPageBase.class);
+    }
+
+    @Override
+    public WatchPageBase playVideo() {
+        watchLink.click();
+        return initPage(driver, WatchPageBase.class);
     }
 }

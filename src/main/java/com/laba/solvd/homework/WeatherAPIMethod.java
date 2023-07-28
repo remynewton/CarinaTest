@@ -18,8 +18,8 @@ public class WeatherAPIMethod extends AbstractApiMethodV2 {
     double latitude = 24.396308 + rand.nextDouble() * (24.98805);
     double longitude = -125.000000 + rand.nextDouble() * (191.93457);
     public WeatherAPIMethod() {
-        replaceUrlPlaceholder("base_url", String.valueOf(Configuration.get("weather_api_url")));
-        replaceUrlPlaceholder("api_token", String.valueOf(Configuration.get("api_token")));
+        replaceUrlPlaceholder("base_url", String.valueOf(Configuration.get("weather_api_url").get()));
+        replaceUrlPlaceholder("api_token", String.valueOf(Configuration.get("api_token").get()));
         replaceUrlPlaceholder("latitude", String.valueOf(latitude));
         replaceUrlPlaceholder("longitude", String.valueOf(longitude));
     }
@@ -27,15 +27,15 @@ public class WeatherAPIMethod extends AbstractApiMethodV2 {
     public WeatherAPIMethod(String lat, String lon) {
         lat = (lat == null) ? String.valueOf(latitude) : lat;
         lon = (lon == null) ? String.valueOf(longitude) : lon;
-        replaceUrlPlaceholder("base_url", String.valueOf(Configuration.get("weather_api_url")));
-        replaceUrlPlaceholder("api_token", String.valueOf(Configuration.get("api_token")));
+        replaceUrlPlaceholder("base_url", String.valueOf(Configuration.get("weather_api_url").get()));
+        replaceUrlPlaceholder("api_token", String.valueOf(Configuration.get("api_token").get()));
         replaceUrlPlaceholder("latitude", lat);
         replaceUrlPlaceholder("longitude", lon);
     }
 
     public WeatherAPIMethod(String token) {
         token = (token == null) ? String.valueOf(Configuration.get("api_token")) : token;
-        replaceUrlPlaceholder("base_url", String.valueOf(Configuration.get("weather_api_url")));
+        replaceUrlPlaceholder("base_url", String.valueOf(Configuration.get("weather_api_url").get()));
         replaceUrlPlaceholder("api_token", token);
         replaceUrlPlaceholder("latitude", String.valueOf(latitude));
         replaceUrlPlaceholder("longitude", String.valueOf(longitude));
