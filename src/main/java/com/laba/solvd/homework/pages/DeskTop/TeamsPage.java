@@ -1,5 +1,6 @@
-package com.laba.solvd.homework.pages;
+package com.laba.solvd.homework.pages.DeskTop;
 
+import com.laba.solvd.homework.pages.TeamsPageBase;
 import com.zebrunner.carina.utils.IWebElement;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
@@ -12,20 +13,12 @@ import java.util.List;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = TeamsPageBase.class)
 public class TeamsPage extends TeamsPageBase {
-    @FindBy(how = How.CSS, using = ".di.clr-gray-01.h5")
-    private List<ExtendedWebElement> names;
+    @FindBy(how = How.XPATH, using = "//h1[@class='headline headline__h1']")
+    private ExtendedWebElement teamsHeader;
 
     public TeamsPage(WebDriver driver) {
         super(driver);
-    }
-
-    @Override
-    public boolean getNames(String teamName) {
-        for (IWebElement name : names) {
-            if (name.getText().equalsIgnoreCase(teamName)) {
-                return true;
-            }
-        }
-        return false;
+        setPageURL("/nfl/teams");
+        setUiLoadedMarker(teamsHeader);
     }
 }
