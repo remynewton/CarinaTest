@@ -13,7 +13,7 @@ public class LoginPage extends AbstractPage {
     private ExtendedWebElement emailInput;
     @FindBy(how= How.CSS, using="button[type='submit']")
     private ExtendedWebElement continueButton;
-    @FindBy(how=How.XPATH, using="//input[@data-testid=\"InputPassword\"]")
+    @FindBy(xpath="//input[@data-testid=\"InputPassword\"]")
     private ExtendedWebElement passwordInput;
     @FindBy(how=How.CSS, using="button[type='submit']")
     private ExtendedWebElement loginButton;

@@ -5,7 +5,6 @@ import com.laba.solvd.homework.pages.HomePageBase;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import com.zebrunner.carina.utils.factory.DeviceType;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HomePageBase.class)

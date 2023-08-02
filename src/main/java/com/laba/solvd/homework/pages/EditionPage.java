@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class EditionPage extends AbstractPage {
-    @FindBy(how= How.XPATH, using="//article[@class=\"lightbox editions-mgmt js-bloomed\"]//iframe")
+    @FindBy(xpath="//article[@class=\"lightbox editions-mgmt js-bloomed\"]//iframe")
     private ExtendedWebElement iframe;
 
     protected EditionPage(WebDriver driver) {

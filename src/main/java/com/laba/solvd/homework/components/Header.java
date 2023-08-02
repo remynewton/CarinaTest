@@ -12,15 +12,15 @@ import com.zebrunner.carina.utils.config.Configuration;
 public class Header extends AbstractUIObject implements ICustomTypePageFactory {
     @FindBy(how= How.CSS, using="li.sports.menu-nfl")
     private ExtendedWebElement nflMenu;
-    @FindBy(how=How.XPATH, using="//a[@href='/nfl/teams']")
+    @FindBy(xpath="//a[@href='/nfl/teams']")
     private ExtendedWebElement teamsLink;
-    @FindBy(how=How.XPATH, using="//li[@class=\"pillar more-espn\"]")
+    @FindBy(xpath="//li[@class=\"pillar more-espn\"]")
     private ExtendedWebElement moreMenu;
-    @FindBy(how=How.XPATH, using="//a[@id=\"global-user-trigger\"]")
+    @FindBy(xpath="//a[@id=\"global-user-trigger\"]")
     private ExtendedWebElement accountsTrigger;
-    @FindBy(how=How.XPATH, using="//button[@id=\"navuserbutton\"]")
+    @FindBy(xpath="//button[@id=\"navuserbutton\"]")
     private ExtendedWebElement accountsTeamsTrigger;
-    @FindBy(how=How.XPATH, using="//header[@id=\"global-header\" or @class=\"db Site__Header__Wrapper sticky top-0\"]//span[@class=\"Editions__Item__Title\"]")
+    @FindBy(xpath="//header[@id=\"global-header\" or @class=\"db Site__Header__Wrapper sticky top-0\"]//span[@class=\"Editions__Item__Title\"]")
     private ExtendedWebElement editionLink;
 
     public Header(WebDriver driver, SearchContext searchContext) {
@@ -41,6 +41,10 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory {
 
     public void hoverTeamsAccounts() {
         accountsTeamsTrigger.hover();
+    }
+
+    public void clickTeamsLoginLink() {
+        accountsTeamsTrigger.click();
     }
 
     public void hoverMoreMenu() {

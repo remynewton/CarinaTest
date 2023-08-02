@@ -1,11 +1,14 @@
 package com.laba.solvd.homework;
 
+import com.laba.solvd.homework.components.CustomizeItem;
 import com.laba.solvd.homework.components.TeamItem;
 import com.laba.solvd.homework.pages.AbstractESPNPage;
+import com.laba.solvd.homework.pages.EditionPage;
 import com.laba.solvd.homework.pages.HomePageBase;
 import com.laba.solvd.homework.pages.TeamsPageBase;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,7 +18,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ESPNTest implements IAbstractTest {
+public class ESPNTest implements IAbstractTest, IMobileUtils {
     @Test(dataProvider = "teams", dataProviderClass = DP.class)
     @MethodOwner(owner = "jnewton")
     public void testSelectTeams(List<String> expected) {
@@ -45,6 +48,9 @@ public class ESPNTest implements IAbstractTest {
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
         SoftAssert softAssert = new SoftAssert();
+        homePage.hoverAccountsHelper();
+        softAssert.assertTrue(homePage.checkLoginLink(), "Login link not clickable, checkLoginLink was unsuccessful.");
+        homePage.clickLoginLink();
         softAssert.assertTrue(homePage.login(email, password), "Logout link not found, login was unsuccessful.");
         softAssert.assertTrue(homePage.logout(), "Login link not found, logout was unsuccessful.");
         softAssert.assertAll();
@@ -57,7 +63,10 @@ public class ESPNTest implements IAbstractTest {
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(homePage.loginAnotherWay(email, password), "Logout link not found for other way, login was unsuccessful.");
+        CustomizeItem customizeItem = homePage.getCustomizeItem();
+        softAssert.assertTrue(customizeItem.checkLoginLink(), "Login link not clickable, checkLoginLink failed.");
+        customizeItem.clickLoginLink();
+        softAssert.assertTrue(homePage.login(email, password), "Logout link not found for other way, login was unsuccessful.");
         softAssert.assertTrue(homePage.logout(), "Login link not found, logout was unsuccessful.");
         softAssert.assertAll();
     }
@@ -70,6 +79,9 @@ public class ESPNTest implements IAbstractTest {
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(homePage.findAd(), "Ad not found, findAd was unsuccessful.");
+        TeamsPageBase teamsInfoPage = homePage.clickTeamPageLink();
+        softAssert.assertTrue(teamsInfoPage.isPageOpened(), "Teams page is not opened");
+        softAssert.assertTrue(teamsInfoPage.findAd(), "Ad not found on Teams page, findAd was unsuccessful.");
         softAssert.assertAll();
     }
 
@@ -80,8 +92,10 @@ public class ESPNTest implements IAbstractTest {
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(homePage.changeEdition("India", "Follow ESPN India"));
-        softAssert.assertAll();
+        EditionPage edition = homePage.clickEditionLink();
+        softAssert.assertTrue(edition.switchEdition("UK", "Follow ESPN UK"));
+        EditionPage edition2 = homePage.clickEditionLink();
+        softAssert.assertTrue(edition2.switchEdition("India", "Follow ESPN India"));
     }
 
     /**

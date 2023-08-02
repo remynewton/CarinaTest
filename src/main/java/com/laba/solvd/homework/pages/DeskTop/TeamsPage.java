@@ -13,7 +13,7 @@ import java.util.List;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = TeamsPageBase.class)
 public class TeamsPage extends TeamsPageBase {
-    @FindBy(how = How.XPATH, using = "//h1[@class='headline headline__h1']")
+    @FindBy(xpath = "//h1[@class='headline headline__h1']")
     private ExtendedWebElement teamsHeader;
 
     public TeamsPage(WebDriver driver) {
