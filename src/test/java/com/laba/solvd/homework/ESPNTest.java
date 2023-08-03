@@ -34,7 +34,6 @@ public class ESPNTest implements IAbstractTest, IMobileUtils {
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
         Assert.assertFalse(CollectionUtils.isEmpty(teamHeaders), "Teams not found!");
-        System.out.println(teamHeaders);
         for (int i = 0; i < expected.size(); i++) {
             softAssert.assertEquals(teamHeaders.get(i), expected.get(i), "Teams don't match expected!");
         }
