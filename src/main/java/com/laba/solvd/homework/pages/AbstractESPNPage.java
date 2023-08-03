@@ -13,16 +13,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class AbstractESPNPage extends AbstractPage {
-    @FindBy(xpath="/html/body/div[5]/div[3]/div/ul[1]/li[8]/a")
+    @FindBy(xpath="//*[@id=\"global-viewport\"]//div//div//ul//li[8]//a[text()=\"Log In\"]")
     private ExtendedWebElement loginLink;
     @FindBy(xpath="//article[@id=\"sideLogin-left-rail\"]")
     private CustomizeItem customizeItem;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"global-viewport\"]//div[3]//div//ul[1]//li[10]//a")
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Log Out')]")
     private ExtendedWebElement logoutLink;
     @FindBy(xpath="//div[@class='GoogleActiveViewElement']")
     private ExtendedWebElement activeViewElement;
     @FindBy(xpath="//div")
     private ExtendedWebElement theDiv;
+
     @FindBy(xpath="//header[@id=\"global-header\"]")
     protected Header header;
     @FindBy(xpath="//a[@name='&lpos=sitenavdefault+sitenav_watch']")

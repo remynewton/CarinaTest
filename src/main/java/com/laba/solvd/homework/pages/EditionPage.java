@@ -27,7 +27,7 @@ public class EditionPage extends AbstractPage {
         WebElement edition = driver.findElement(By.xpath(String.format(selector, input)));
         edition.click();
         String selector2 = "//h2[text()=\"%s\"]";
-        WebElement follow = driver.findElement(By.xpath(String.format(selector2, input)));
+        WebElement follow = driver.findElement(By.xpath(String.format(selector2, test)));
         return follow.isDisplayed();
     }
 
