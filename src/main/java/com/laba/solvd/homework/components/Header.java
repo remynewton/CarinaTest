@@ -1,5 +1,6 @@
 package com.laba.solvd.homework.components;
 
+import com.laba.solvd.homework.pages.NFLPageBase;
 import com.zebrunner.carina.utils.factory.ICustomTypePageFactory;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
@@ -22,6 +23,8 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory {
     private ExtendedWebElement accountsTeamsTrigger;
     @FindBy(xpath="//header[@id=\"global-header\" or @class=\"db Site__Header__Wrapper sticky top-0\"]//span[@class=\"Editions__Item__Title\"]")
     private ExtendedWebElement editionLink;
+    @FindBy(xpath="//a[contains(@name, \"nfl:user\")]")
+    public ExtendedWebElement nflPage;
 
     public Header(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
@@ -53,5 +56,8 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory {
 
     public void clickEditionLink() {
         editionLink.click();
+    }
+    public void clickNFLPage() {
+        nflPage.click();
     }
 }

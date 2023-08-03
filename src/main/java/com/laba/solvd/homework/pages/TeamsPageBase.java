@@ -46,4 +46,9 @@ public abstract class TeamsPageBase extends AbstractESPNPage {
         AdPage ad = new AdPage(driver);
         ad.switchToOtherIFrame();
     }
+
+    @Override
+    public void open() {
+        super.open();
+    }
 }

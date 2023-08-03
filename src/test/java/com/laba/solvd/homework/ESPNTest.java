@@ -22,7 +22,7 @@ public class ESPNTest implements IAbstractTest, IMobileUtils {
     @Test(dataProvider = "teams", dataProviderClass = DP.class)
     @MethodOwner(owner = "jnewton")
     public void testSelectTeams(List<String> expected) {
-        AbstractESPNPage homePage = initPage(getDriver(), HomePageBase.class);
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
         TeamsPageBase teamsInfoPage = homePage.clickTeamPageLink();

@@ -9,4 +9,9 @@ public abstract class HomePageBase extends AbstractESPNPage {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
     }
+
+    @Override
+    public void open() {
+        super.open();
+    }
 }

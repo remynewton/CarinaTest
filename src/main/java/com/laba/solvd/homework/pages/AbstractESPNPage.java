@@ -7,9 +7,13 @@ import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class AbstractESPNPage extends AbstractPage {
-    @FindBy(how= How.CSS, using="a[data-regformid=\"espn\"]")
+    @FindBy(xpath="//a[@data-affiliatename=\"espn\"]")
     private ExtendedWebElement loginLink;
     @FindBy(xpath="//article[@id=\"sideLogin-left-rail\"]")
     private CustomizeItem customizeItem;
@@ -91,12 +95,5 @@ public class AbstractESPNPage extends AbstractPage {
         getHeader().hoverMoreMenu();
         getHeader().clickEditionLink();
         return new EditionPage(driver);
-    }
-
-
-
-    @Override
-    public void open() {
-        super.open();
     }
 }
