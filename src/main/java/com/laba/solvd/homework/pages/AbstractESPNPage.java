@@ -13,11 +13,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class AbstractESPNPage extends AbstractPage {
-    @FindBy(xpath="//a[@data-affiliatename=\"espn\"]")
+    @FindBy(xpath="/html/body/div[5]/div[3]/div/ul[1]/li[8]/a")
     private ExtendedWebElement loginLink;
     @FindBy(xpath="//article[@id=\"sideLogin-left-rail\"]")
     private CustomizeItem customizeItem;
-    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Log Out')]")
+    @FindBy(how = How.XPATH, using = "//*[@id=\"global-viewport\"]//div[3]//div//ul[1]//li[10]//a")
     private ExtendedWebElement logoutLink;
     @FindBy(xpath="//div[@class='GoogleActiveViewElement']")
     private ExtendedWebElement activeViewElement;
@@ -95,5 +95,10 @@ public class AbstractESPNPage extends AbstractPage {
         getHeader().hoverMoreMenu();
         getHeader().clickEditionLink();
         return new EditionPage(driver);
+    }
+
+    public void switchToEditionIFrame() {
+        EditionPage edition = new EditionPage(driver);
+        edition.switchToIFrame();
     }
 }

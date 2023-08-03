@@ -1,6 +1,7 @@
 package com.laba.solvd.homework.pages.Mobile;
 
 
+import com.laba.solvd.homework.pages.EditionPage;
 import com.laba.solvd.homework.pages.HomePageBase;
 import com.laba.solvd.homework.pages.NFLPageBase;
 import com.laba.solvd.homework.pages.TeamsPageBase;
@@ -23,7 +24,13 @@ public class HomePage extends HomePageBase {
         setUiLoadedMarker(globalHeader);
     }
 
+    @Override
+    public void hoverAccountsHelper() {
+        getHeader().clickAccounts();
+    }
+
     public NFLPageBase getNFLPage() {
+        getHeader().clickMobileNavTrigger();
         getHeader().clickNFLPage();
         return initPage(driver, NFLPageBase.class);
     }
@@ -31,7 +38,19 @@ public class HomePage extends HomePageBase {
     @Override
     public TeamsPageBase clickTeamPageLink() {
         NFLPageBase nflPage = getNFLPage();
+        //getHeader().clickMoreMenuLink();
         return nflPage.clickTeamsLink();
+    }
+
+    @Override
+    public EditionPage clickEditionLink() {
+        getHeader().clickMobileNavTrigger();
+        getHeader().clickMobileEditionLink();
+        return new EditionPage(driver);
+    }
+    public void switchToEditionIFrame() {
+        EditionPage edition = new EditionPage(driver);
+        edition.switchToMobileIFrame();
     }
 
     /**

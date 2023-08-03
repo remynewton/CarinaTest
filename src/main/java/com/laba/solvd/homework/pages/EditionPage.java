@@ -7,22 +7,35 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class EditionPage extends AbstractPage {
     @FindBy(xpath="//article[@class=\"lightbox editions-mgmt js-bloomed\"]//iframe")
     private ExtendedWebElement iframe;
+    @FindBy(xpath="//div[@class=\"lightbox-container\"]//article//iframe")
+    private ExtendedWebElement mobileIFrame;
 
-    protected EditionPage(WebDriver driver) {
+    public EditionPage(WebDriver driver) {
         super(driver);
     }
 
     public boolean switchEdition(String input, String test) {
-        driver.switchTo().frame(iframe.getElement());
         String selector = "//span[text()=\"%s\"]";
         WebElement edition = driver.findElement(By.xpath(String.format(selector, input)));
         edition.click();
         String selector2 = "//h2[text()=\"%s\"]";
-        WebElement follow = driver.findElement(By.xpath(String.format(selector, input)));
+        WebElement follow = driver.findElement(By.xpath(String.format(selector2, input)));
         return follow.isDisplayed();
+    }
+
+    public void switchToIFrame() {
+        driver.switchTo().frame(iframe.getElement());
+    }
+
+    public void switchToMobileIFrame() {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(mobileIFrame.getElement()));
     }
 }
