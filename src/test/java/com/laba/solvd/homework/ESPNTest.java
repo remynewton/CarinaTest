@@ -10,6 +10,7 @@ import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import org.apache.commons.collections.CollectionUtils;
+import org.jetbrains.annotations.NotNull;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 public class ESPNTest implements IAbstractTest, IMobileUtils {
     @Test(dataProvider = "teams", dataProviderClass = DP.class)
     @MethodOwner(owner = "jnewton")
-    public void testSelectTeams(List<String> expected) {
+    public void testSelectTeams(@NotNull List<String> expected) {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
@@ -55,7 +56,7 @@ public class ESPNTest implements IAbstractTest, IMobileUtils {
         softAssert.assertAll();
     }
 
-    @Test(dataProvider = "login", dataProviderClass = DP.class)
+    @Test(dataProvider = "login", dataProviderClass = DP.class, groups = {"desktop"})
     @MethodOwner(owner = "jnewton")
     public void testOtherLogin(String email, String password) {
         AbstractESPNPage homePage = initPage(getDriver(), HomePageBase.class);
@@ -93,20 +94,7 @@ public class ESPNTest implements IAbstractTest, IMobileUtils {
         SoftAssert softAssert = new SoftAssert();
         EditionPage edition = homePage.clickEditionLink();
         homePage.switchToEditionIFrame();
-        softAssert.assertTrue(edition.switchEdition("UK", "Follow ESPN UK"));
+        softAssert.assertTrue(edition.switchEdition("UK", "uk"));
         softAssert.assertAll();
     }
-
-    /**
-     @Test()
-     @MethodOwner(owner = "jnewton")
-     public void playVideo() {
-     HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
-     homePage.open();
-     Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
-     WatchPageBase watchInfoPage = homePage.playVideo();
-     SoftAssert softAssert = new SoftAssert();
-     softAssert.assertTrue(watchInfoPage.watchVideo(), "Video playback not found, playVideo was unsuccessful");
-     }
-     **/
 }

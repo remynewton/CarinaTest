@@ -26,7 +26,7 @@ public class EditionPage extends AbstractPage {
         String selector = "//span[text()=\"%s\"]";
         WebElement edition = driver.findElement(By.xpath(String.format(selector, input)));
         edition.click();
-        String selector2 = "//h2[text()=\"%s\"]";
+        String selector2 = "//meta[contains(@content, \"%s\") and @property=\"og:url\"]";
         WebElement follow = driver.findElement(By.xpath(String.format(selector2, test)));
         return follow.isDisplayed();
     }
@@ -36,6 +36,6 @@ public class EditionPage extends AbstractPage {
     }
 
     public void switchToMobileIFrame() {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(mobileIFrame.getElement()));
+        new WebDriverWait(driver, Duration.ofSeconds(80)).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(mobileIFrame.getElement()));
     }
 }

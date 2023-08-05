@@ -44,11 +44,15 @@ public class AbstractESPNPage extends AbstractPage {
         return loginLink.isClickable();
     }
 
+    public void clickLogoutLink() { logoutLink.click(); }
+
+    public boolean checkLogoutLink() { return logoutLink.isClickable(); }
+
     public boolean login(String email, String password) {
         LoginPage login = new LoginPage(driver);
         login.executeLogin(email, password);
         hoverAccountsHelper();
-        return logoutLink.isElementPresent();
+        return checkLogoutLink();
     }
 
     public CustomizeItem getCustomizeItem() {
@@ -56,9 +60,9 @@ public class AbstractESPNPage extends AbstractPage {
     }
 
     public boolean logout() {
-        logoutLink.click();
+        clickLogoutLink();
         hoverAccountsHelper();
-        return loginLink.isElementPresent();
+        return checkLoginLink();
     }
 
     public void switchToAdIFrame() {

@@ -22,7 +22,9 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory {
     @FindBy(xpath="//header[@id=\"global-header\" or @class=\"db Site__Header__Wrapper sticky top-0\"]//span[@class=\"Editions__Item__Title\"]")
     private ExtendedWebElement editionLink;
     @FindBy(xpath="//*[@id=\"global-nav-mobile\"]/ul/li[7]/a")
-    private ExtendedWebElement mobileEditionLink;
+    public ExtendedWebElement mobileMoreLink;
+    @FindBy(xpath="//*[@id=\"global-nav-mobile\"]/ul/li[7]/ul/li[13]/div/div[2]/span[2]")
+    public ExtendedWebElement mobileEditionLink;
     @FindBy(xpath="//a[@name=\"&lpos=sitenavmobile+sports+nfl\"]")
     public ExtendedWebElement nflPageLink;
     @FindBy(xpath="//a[@id=\"global-nav-mobile-trigger\"]")
@@ -78,6 +80,7 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory {
     }
 
     public void clickMobileEditionLink() {
+        mobileMoreLink.click();
         mobileEditionLink.click();
     }
 }

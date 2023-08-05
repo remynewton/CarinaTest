@@ -17,7 +17,11 @@ import java.time.Duration;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomePageBase.class)
 public class HomePage extends HomePageBase {
     @FindBy(xpath = "//header[@id=\"global-header\"]")
-    public ExtendedWebElement globalHeader;
+    private ExtendedWebElement globalHeader;
+    @FindBy(xpath = "//*[@id=\"global-viewport\"]/div[3]/div/ul[1]/li[8]/a")
+    private ExtendedWebElement mobileLoginLink;
+    @FindBy(xpath="//*[@id=\"global-viewport\"]/div[3]/div/ul[1]/li[10]/a")
+    private ExtendedWebElement mobileLogoutLink;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -52,6 +56,23 @@ public class HomePage extends HomePageBase {
         EditionPage edition = new EditionPage(driver);
         edition.switchToMobileIFrame();
     }
+
+    @Override
+    public void clickLoginLink() {
+        mobileLoginLink.click();
+    }
+
+    @Override
+    public boolean checkLoginLink() {
+        return mobileLoginLink.isClickable();
+    }
+
+    @Override
+    public void clickLogoutLink() { mobileLogoutLink.click(); }
+
+    @Override
+    public boolean checkLogoutLink() { return mobileLogoutLink.isClickable(); }
+
 
     /**
     @Override
