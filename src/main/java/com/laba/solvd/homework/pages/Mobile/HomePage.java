@@ -7,7 +7,9 @@ import com.laba.solvd.homework.pages.NFLPageBase;
 import com.laba.solvd.homework.pages.TeamsPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -51,6 +53,15 @@ public class HomePage extends HomePageBase {
         getHeader().clickMobileNavTrigger();
         getHeader().clickMobileEditionLink();
         return new EditionPage(driver);
+    }
+
+    @Override
+    public boolean checkEdition(String test) {
+        getHeader().clickMobileNavTrigger();
+        getHeader().clickMobileMoreMenu();
+        String selector2 = "//*[@id=\"global-nav-mobile\"]//span[text()=\"%s\"]";
+        WebElement editionText = driver.findElement(By.xpath(String.format(selector2, test)));
+        return editionText.isDisplayed();
     }
     public void switchToEditionIFrame() {
         EditionPage edition = new EditionPage(driver);

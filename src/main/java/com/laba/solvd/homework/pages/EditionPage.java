@@ -22,13 +22,10 @@ public class EditionPage extends AbstractPage {
         super(driver);
     }
 
-    public boolean switchEdition(String input, String test) {
+    public void switchEdition(String input) {
         String selector = "//span[text()=\"%s\"]";
         WebElement edition = driver.findElement(By.xpath(String.format(selector, input)));
         edition.click();
-        String selector2 = "//meta[contains(@content, \"%s\") and @property=\"og:url\"]";
-        WebElement follow = driver.findElement(By.xpath(String.format(selector2, test)));
-        return follow.isDisplayed();
     }
 
     public void switchToIFrame() {

@@ -4,7 +4,9 @@ import com.laba.solvd.homework.components.CustomizeItem;
 import com.laba.solvd.homework.components.Header;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -100,6 +102,13 @@ public class AbstractESPNPage extends AbstractPage {
         getHeader().hoverMoreMenu();
         getHeader().clickEditionLink();
         return new EditionPage(driver);
+    }
+
+    public boolean checkEdition(String test) {
+        getHeader().hoverMoreMenu();
+        String selector2 = "//*[@id=\"global-nav-mobile\"]//span[text()=\"%s\"]";
+        WebElement editionText = driver.findElement(By.xpath(String.format(selector2, test)));
+        return editionText.isDisplayed();
     }
 
     public void switchToEditionIFrame() {

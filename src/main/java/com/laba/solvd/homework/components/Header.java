@@ -7,6 +7,10 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class Header extends AbstractUIObject implements ICustomTypePageFactory {
     @FindBy(how= How.CSS, using="li.sports.menu-nfl")
@@ -21,7 +25,7 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory {
     private ExtendedWebElement accountsTeamsTrigger;
     @FindBy(xpath="//header[@id=\"global-header\" or @class=\"db Site__Header__Wrapper sticky top-0\"]//span[@class=\"Editions__Item__Title\"]")
     private ExtendedWebElement editionLink;
-    @FindBy(xpath="//*[@id=\"global-nav-mobile\"]/ul/li[7]/a")
+    @FindBy(xpath="//*[@id=\"global-nav-mobile\"]//a[@class=\"menu-trigger nav-pillar nav-more\"]")
     public ExtendedWebElement mobileMoreLink;
     @FindBy(xpath="//*[@id=\"global-nav-mobile\"]/ul/li[7]/ul/li[13]/div/div[2]/span[2]")
     public ExtendedWebElement mobileEditionLink;
@@ -77,6 +81,11 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory {
         if (moreMenuLink.isElementPresent()) {
             moreMenuLink.click();
         }
+    }
+
+    public void clickMobileMoreMenu() {
+        new WebDriverWait(driver, Duration.ofSeconds(80)).until(ExpectedConditions.elementToBeClickable(mobileMoreLink.getElement()));
+        mobileMoreLink.click();
     }
 
     public void clickMobileEditionLink() {

@@ -94,7 +94,8 @@ public class ESPNTest implements IAbstractTest, IMobileUtils {
         SoftAssert softAssert = new SoftAssert();
         EditionPage edition = homePage.clickEditionLink();
         homePage.switchToEditionIFrame();
-        softAssert.assertTrue(edition.switchEdition("UK", "uk"));
+        edition.switchEdition("UK");
+        softAssert.assertTrue(homePage.checkEdition("UK"));
         softAssert.assertAll();
     }
 }
