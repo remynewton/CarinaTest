@@ -50,7 +50,6 @@ public class ESPNTest implements IAbstractTest, IMobileUtils {
         SoftAssert softAssert = new SoftAssert();
         homePage.hoverAccountsHelper();
         softAssert.assertTrue(homePage.checkLoginLink(), "Login link not clickable, checkLoginLink was unsuccessful.");
-        homePage.clickLoginLink();
         softAssert.assertTrue(homePage.login(email, password), "Logout link not found, login was unsuccessful.");
         softAssert.assertTrue(homePage.logout(), "Login link not found, logout was unsuccessful.");
         softAssert.assertAll();

@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class AbstractESPNPage extends AbstractPage {
-    @FindBy(xpath="//*[@id=\"global-viewport\"]//div//div//ul//li[8]//a[text()=\"Log In\"]")
+    @FindBy(xpath="//*[@id=\"global-header\"]//a[text()=\"Log In\" and @data-regformid=\"espn\"]")
     private ExtendedWebElement loginLink;
     @FindBy(xpath="//article[@id=\"sideLogin-left-rail\"]")
     private CustomizeItem customizeItem;
@@ -23,13 +23,9 @@ public class AbstractESPNPage extends AbstractPage {
     private ExtendedWebElement logoutLink;
     @FindBy(xpath="//div[@class='GoogleActiveViewElement']")
     private ExtendedWebElement activeViewElement;
-    @FindBy(xpath="//div")
-    private ExtendedWebElement theDiv;
 
     @FindBy(xpath="//header[@id=\"global-header\"]")
     protected Header header;
-    @FindBy(xpath="//a[@name='&lpos=sitenavdefault+sitenav_watch']")
-    private ExtendedWebElement watchLink;
     public AbstractESPNPage(WebDriver driver) {
         super(driver);
     }
@@ -51,6 +47,7 @@ public class AbstractESPNPage extends AbstractPage {
     public boolean checkLogoutLink() { return logoutLink.isClickable(); }
 
     public boolean login(String email, String password) {
+        clickLoginLink();
         LoginPage login = new LoginPage(driver);
         login.executeLogin(email, password);
         hoverAccountsHelper();
@@ -77,12 +74,6 @@ public class AbstractESPNPage extends AbstractPage {
         return activeViewElement.isElementPresent();
     }
 
-    public boolean findOtherAd() {
-        AdPage ad = new AdPage(driver);
-        ad.switchToOtherIFrame();
-        return theDiv.isElementPresent();
-    }
-
     public TeamsPageBase clickTeamPageLink() {
         getHeader().hoverNFLMenu();
         getHeader().clickTeamsLink();
@@ -91,11 +82,6 @@ public class AbstractESPNPage extends AbstractPage {
 
     public Header getHeader() {
         return header;
-    }
-
-    public WatchPageBase playVideo() {
-        watchLink.click();
-        return initPage(driver, WatchPageBase.class);
     }
 
     public EditionPage clickEditionLink() {

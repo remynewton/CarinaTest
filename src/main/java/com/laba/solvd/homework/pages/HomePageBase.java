@@ -1,5 +1,6 @@
 package com.laba.solvd.homework.pages;
 
+import com.zebrunner.carina.utils.config.Configuration;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import org.openqa.selenium.WebDriver;
 
@@ -12,6 +13,6 @@ public abstract class HomePageBase extends AbstractESPNPage {
 
     @Override
     public void open() {
-        super.open();
+        super.openURL(Configuration.get("base").get());
     }
 }

@@ -2,6 +2,7 @@ package com.laba.solvd.homework.pages;
 
 import com.laba.solvd.homework.components.Header;
 import com.laba.solvd.homework.components.TeamItem;
+import com.zebrunner.carina.utils.config.Configuration;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -49,6 +50,6 @@ public abstract class TeamsPageBase extends AbstractESPNPage {
 
     @Override
     public void open() {
-        super.open();
+        super.openURL(Configuration.get("teams").get());
     }
 }
