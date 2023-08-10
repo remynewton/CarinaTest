@@ -13,28 +13,30 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class Header extends AbstractUIObject implements ICustomTypePageFactory {
-    @FindBy(how= How.CSS, using="li.sports.menu-nfl")
+    @FindBy(how = How.CSS, using = "li.sports.menu-nfl")
     private ExtendedWebElement nflMenu;
-    @FindBy(xpath="//a[@href='/nfl/teams']")
+    @FindBy(xpath = "//a[@href='/nfl/teams']")
     private ExtendedWebElement teamsLink;
-    @FindBy(xpath="//li[@class=\"pillar more-espn\"]")
+    @FindBy(xpath = "//li[@class=\"pillar more-espn\"]")
     private ExtendedWebElement moreMenu;
-    @FindBy(xpath="//a[@id=\"global-user-trigger\"]")
+    @FindBy(xpath = "//a[@id=\"global-user-trigger\"]")
     private ExtendedWebElement accountsTrigger;
-    @FindBy(xpath="//button[@id=\"navuserbutton\"]")
+    @FindBy(xpath = "//button[@id=\"navuserbutton\"]")
     private ExtendedWebElement accountsTeamsTrigger;
-    @FindBy(xpath="//header[@id=\"global-header\" or @class=\"db Site__Header__Wrapper sticky top-0\"]//span[@class=\"Editions__Item__Title\"]")
+    @FindBy(xpath = "//header[@id=\"global-header\" or @class=\"db Site__Header__Wrapper sticky top-0\"]//span[@class=\"Editions__Item__Title\"]")
     private ExtendedWebElement editionLink;
-    @FindBy(xpath="//*[@id=\"global-nav-mobile\"]//a[@class=\"menu-trigger nav-pillar nav-more\"]")
+    @FindBy(xpath = "//*[@id=\"global-nav-mobile\"]//a[@class=\"menu-trigger nav-pillar nav-more\"]")
     public ExtendedWebElement mobileMoreLink;
-    @FindBy(xpath="//*[@id=\"global-nav-mobile\"]/ul/li[7]/ul/li[13]/div/div[2]/span[2]")
+    @FindBy(xpath = "//*[@id=\"global-nav-mobile\"]/ul/li[7]/ul/li[13]/div/div[2]/span[2]")
     public ExtendedWebElement mobileEditionLink;
-    @FindBy(xpath="//a[@name=\"&lpos=sitenavmobile+sports+nfl\"]")
+    @FindBy(xpath = "//a[@name=\"&lpos=sitenavmobile+sports+nfl\"]")
     public ExtendedWebElement nflPageLink;
-    @FindBy(xpath="//a[@id=\"global-nav-mobile-trigger\"]")
+    @FindBy(xpath = "//a[@id=\"global-nav-mobile-trigger\"]")
     public ExtendedWebElement mobileNavTrigger;
-    @FindBy(xpath="//li[@class=\"has-sub \"]//span[text()=\"More\"]")
+    @FindBy(xpath = "//li[@class=\"has-sub \"]//span[text()=\"More\"]")
     public ExtendedWebElement moreMenuLink;
+    @FindBy(xpath = "//li[@class=\"pillar watch\"]/a")
+    private ExtendedWebElement watchLink;
 
     public Header(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
@@ -48,11 +50,15 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory {
         teamsLink.click();
     }
 
+    public void clickWatchLink() { watchLink.click(); }
+
     public void hoverAccounts() {
         accountsTrigger.hover();
     }
 
-    public void clickAccounts() {accountsTrigger.click();}
+    public void clickAccounts() {
+        accountsTrigger.click();
+    }
 
     public void hoverTeamsAccounts() {
         accountsTeamsTrigger.hover();
@@ -73,6 +79,7 @@ public class Header extends AbstractUIObject implements ICustomTypePageFactory {
     public void clickMobileNavTrigger() {
         mobileNavTrigger.click();
     }
+
     public void clickNFLPage() {
         nflPageLink.click();
     }

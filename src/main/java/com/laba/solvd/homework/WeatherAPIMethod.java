@@ -17,6 +17,7 @@ public class WeatherAPIMethod extends AbstractApiMethodV2 {
     Random rand = new Random();
     double latitude = 24.396308 + rand.nextDouble() * (24.98805);
     double longitude = -125.000000 + rand.nextDouble() * (191.93457);
+
     public WeatherAPIMethod() {
         replaceUrlPlaceholder("base_url", String.valueOf(Configuration.get("weather_api_url").get()));
         replaceUrlPlaceholder("api_token", String.valueOf(Configuration.get("api_token").get()));

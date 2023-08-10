@@ -9,23 +9,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class AbstractESPNPage extends AbstractPage {
-    @FindBy(xpath="//*[@id=\"global-header\"]//a[text()=\"Log In\" and @data-regformid=\"espn\"]")
+
+    @FindBy(xpath = "//header[@id=\"global-header\"]")
+    protected Header header;
+    @FindBy(xpath = "//header[@id=\"global-header\"]//a[text()=\"Log In\" and @data-regformid=\"espn\"]")
     private ExtendedWebElement loginLink;
-    @FindBy(xpath="//article[@id=\"sideLogin-left-rail\"]")
+    @FindBy(xpath = "//article[@id=\"sideLogin-left-rail\"]")
     private CustomizeItem customizeItem;
     @FindBy(how = How.XPATH, using = "//a[contains(text(),'Log Out')]")
     private ExtendedWebElement logoutLink;
-    @FindBy(xpath="//div[@class='GoogleActiveViewElement']")
+    @FindBy(xpath = "//div[@class='GoogleActiveViewElement']")
     private ExtendedWebElement activeViewElement;
 
-    @FindBy(xpath="//header[@id=\"global-header\"]")
-    protected Header header;
     public AbstractESPNPage(WebDriver driver) {
         super(driver);
     }
@@ -42,9 +39,13 @@ public class AbstractESPNPage extends AbstractPage {
         return loginLink.isClickable();
     }
 
-    public void clickLogoutLink() { logoutLink.click(); }
+    public void clickLogoutLink() {
+        logoutLink.click();
+    }
 
-    public boolean checkLogoutLink() { return logoutLink.isClickable(); }
+    public boolean checkLogoutLink() {
+        return logoutLink.isClickable();
+    }
 
     public boolean login(String email, String password) {
         clickLoginLink();
@@ -78,6 +79,11 @@ public class AbstractESPNPage extends AbstractPage {
         getHeader().hoverNFLMenu();
         getHeader().clickTeamsLink();
         return initPage(driver, TeamsPageBase.class);
+    }
+
+    public WatchPageBase clickWatchPageLink() {
+        getHeader().clickWatchLink();
+        return initPage(driver, WatchPageBase.class);
     }
 
     public Header getHeader() {

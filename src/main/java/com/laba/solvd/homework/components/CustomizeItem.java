@@ -8,8 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class CustomizeItem extends AbstractUIObject implements ICustomTypePageFactory {
-    @FindBy(xpath=".//button[text()=\"Log In\"]")
+    @FindBy(xpath = ".//button[text()=\"Log In\"]")
     private ExtendedWebElement otherLoginLink;
+
     public CustomizeItem(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }

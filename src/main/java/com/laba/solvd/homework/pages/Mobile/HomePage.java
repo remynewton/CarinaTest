@@ -83,14 +83,4 @@ public class HomePage extends HomePageBase {
 
     @Override
     public boolean checkLogoutLink() { return mobileLogoutLink.isClickable(); }
-
-
-    /**
-    @Override
-    public void open() {
-        super.open();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        wait.until(ExpectedConditions.visibilityOf(globalHeader.getElement()));
-    }
-    **/
 }

@@ -6,16 +6,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 public class EditionPage extends AbstractPage {
-    @FindBy(xpath="//article[@class=\"lightbox editions-mgmt js-bloomed\"]//iframe")
+    @FindBy(xpath = "//article[@class=\"lightbox editions-mgmt js-bloomed\"]//iframe")
     private ExtendedWebElement iframe;
-    @FindBy(xpath="//div[@class=\"lightbox-container\"]//article//iframe")
+    @FindBy(xpath = "//div[@class=\"lightbox-container\"]//article//iframe")
     private ExtendedWebElement mobileIFrame;
 
     public EditionPage(WebDriver driver) {

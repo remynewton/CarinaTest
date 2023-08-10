@@ -7,16 +7,17 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class LoginPage extends AbstractPage {
-    @FindBy(xpath="//iframe[@id=\"oneid-iframe\"]")
+    @FindBy(xpath = "//iframe[@id=\"oneid-iframe\"]")
     private ExtendedWebElement iframe;
     @FindBy(xpath = "//input[@data-testid=\"InputIdentityFlowValue\"]")
     private ExtendedWebElement emailInput;
-    @FindBy(how= How.CSS, using="button[type='submit']")
+    @FindBy(how = How.CSS, using = "button[type='submit']")
     private ExtendedWebElement continueButton;
-    @FindBy(xpath="//input[@data-testid=\"InputPassword\"]")
+    @FindBy(xpath = "//input[@data-testid=\"InputPassword\"]")
     private ExtendedWebElement passwordInput;
-    @FindBy(how=How.CSS, using="button[type='submit']")
+    @FindBy(how = How.CSS, using = "button[type='submit']")
     private ExtendedWebElement loginButton;
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }

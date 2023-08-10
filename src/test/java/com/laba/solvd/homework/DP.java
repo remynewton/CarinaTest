@@ -1,21 +1,11 @@
 package com.laba.solvd.homework;
 
 import com.zebrunner.carina.dataprovider.IAbstractDataProvider;
-import com.zebrunner.carina.utils.config.Configuration;
 import org.testng.annotations.DataProvider;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
 
 public class DP implements IAbstractDataProvider {
-
-    @DataProvider(name="login")
-    public Object[][] espnMethod() {
-        return new Object[][]{
-                {Configuration.get("email").get(), Configuration.get("password").get()}
-        };
-    }
 
     @DataProvider(name = "coord")
     public Object[][] weatherMethod() {
@@ -26,8 +16,8 @@ public class DP implements IAbstractDataProvider {
         };
     }
 
-    @DataProvider(name="teams")
-    public static Object[][] espnMethod2() {
+    @DataProvider(name = "teams")
+    public static Object[][] espnMethod() {
         return new Object[][]{
                 {Arrays.asList("Arizona Cardinals",
                         "Atlanta Falcons",
