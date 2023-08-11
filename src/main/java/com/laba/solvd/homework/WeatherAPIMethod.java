@@ -11,7 +11,7 @@ import com.zebrunner.carina.utils.config.Configuration;
 import java.util.Random;
 
 @Endpoint(url = "${base_url}/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${api_token}", methodType = HttpMethodType.GET)
-@ResponseTemplatePath(path = "api/weather/response_schema.json")
+@ResponseTemplatePath(path = "api/weather/_get/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class WeatherAPIMethod extends AbstractApiMethodV2 {
     Random rand = new Random();
@@ -19,8 +19,8 @@ public class WeatherAPIMethod extends AbstractApiMethodV2 {
     double longitude = -125.000000 + rand.nextDouble() * (191.93457);
 
     public WeatherAPIMethod() {
-        replaceUrlPlaceholder("base_url", String.valueOf(Configuration.get("weather_api_url").get()));
-        replaceUrlPlaceholder("api_token", String.valueOf(Configuration.get("api_token").get()));
+        replaceUrlPlaceholder("base_url", Configuration.get("weather_api_url").get());
+        replaceUrlPlaceholder("api_token", Configuration.get("api_token").get());
         replaceUrlPlaceholder("latitude", String.valueOf(latitude));
         replaceUrlPlaceholder("longitude", String.valueOf(longitude));
     }
@@ -28,17 +28,25 @@ public class WeatherAPIMethod extends AbstractApiMethodV2 {
     public WeatherAPIMethod(String lat, String lon) {
         lat = (lat == null) ? String.valueOf(latitude) : lat;
         lon = (lon == null) ? String.valueOf(longitude) : lon;
-        replaceUrlPlaceholder("base_url", String.valueOf(Configuration.get("weather_api_url").get()));
-        replaceUrlPlaceholder("api_token", String.valueOf(Configuration.get("api_token").get()));
+        replaceUrlPlaceholder("base_url", Configuration.get("weather_api_url").get());
+        replaceUrlPlaceholder("api_token", Configuration.get("api_token").get());
         replaceUrlPlaceholder("latitude", lat);
         replaceUrlPlaceholder("longitude", lon);
     }
 
     public WeatherAPIMethod(String token) {
         token = (token == null) ? String.valueOf(Configuration.get("api_token")) : token;
-        replaceUrlPlaceholder("base_url", String.valueOf(Configuration.get("weather_api_url").get()));
+        replaceUrlPlaceholder("base_url", Configuration.get("weather_api_url").get());
         replaceUrlPlaceholder("api_token", token);
         replaceUrlPlaceholder("latitude", String.valueOf(latitude));
         replaceUrlPlaceholder("longitude", String.valueOf(longitude));
+    }
+
+    public String getLatitude() {
+        return String.valueOf(latitude).substring(0,3);
+    }
+
+    public String getLongitude() {
+        return String.valueOf(longitude).substring(0,3);
     }
 }
